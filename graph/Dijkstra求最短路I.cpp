@@ -18,14 +18,17 @@ int dijkstra()
 
     for (int i = 1; i <= n; i++) // 按顺序处理一遍每个点
     {
-        int t = -1; // t 用于存储当前最小距离的节点，初始设为 -1 表示还没有选择节点
-        for (int j = 1; j <= n; j++) // 在所有尚未确定最短路径的节点 j（即 st[j] == false）中找到距离最短的点。
-            if (!st[j] && (t == -1 || dist[t] > dist[j])) // 如果 t == -1，则直接选中节点 j，因为这是第一次选择
+        int t = -1;
+        // 在所有尚未确定最短路径的节点 j（即 st[j] == false）中找到距离最短的点。
+        for (int j = 1; j <= n; j++)
+            if (!st[j] && (t == -1 || dist[t] > dist[j]))
                 t = j;
 
-        st[t] = true; // t标记为确定最短路径
-        for (int j = 1; j <= n; j++)                   // 使用当前确定的最短路径节点 t 来更新其邻接点的最短路径
+        // 使用当前确定的最短路径节点 t 来更新其邻接点的最短路径
+        for (int j = 1; j <= n; j++)
             dist[j] = min(dist[j], dist[t] + g[t][j]); // 有可能tj之间没有边，这样就会加上无穷大，不影响结果
+
+        st[t] = true; // t标记为确定最短路径
     }
 
     if (dist[n] == 0x3f3f3f3f)
