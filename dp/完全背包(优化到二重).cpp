@@ -18,12 +18,8 @@ int main()
     {
         for (int j = 1; j <= m; j ++)
         {
-            for (int k = 0; k * v[i] <= j; k++)
-            {
-                f[i][j] = f[i-1][j];
-                // 见笔记推导
-                if (j >= k * v[i]) f[i][j] = max(f[i][j], f[i][j- k * v[i]] + k * w[i]);
-            }
+            f[i][j] = f[i-1][j];
+            if (j >= v[i]) f[i][j] = max(f[i][j], f[i][j-v[i]] + w[i]);
         }
     }
 
