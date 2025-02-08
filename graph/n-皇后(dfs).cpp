@@ -6,7 +6,7 @@ const int N = 10;
 
 int n;
 char g[N][N]; 
-bool col[N], dg[N], ndg[N];
+bool col[N], dg[2 * N], ndg[2 * N]; // 对角线个数为2n-1，开2n
 
 void dfs(int u) // u是当前位置
 {

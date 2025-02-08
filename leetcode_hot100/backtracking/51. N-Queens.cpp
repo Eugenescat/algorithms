@@ -8,7 +8,7 @@ public:
     vector<vector<string>> solveNQueens(int _n) {
         n = _n;
         col = vector<bool>(n);
-        dg = udg = vector<bool>(2 * n);
+        dg = udg = vector<bool>(2 * n); // 对角线长度为2n-1（根号2?）
         path = vector<string>(n, string(n, '.'));
 
         dfs(0); // 本质上是遍历row 从0到n-1
