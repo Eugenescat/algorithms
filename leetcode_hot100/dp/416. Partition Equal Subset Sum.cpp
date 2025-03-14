@@ -2,6 +2,8 @@ class Solution {
 public:
     // 0-1背包问题
     bool canPartition(vector<int>& nums) {
+        // 如果 sum 是奇数，无法平分，直接返回 false
+        // 如果 sum 是偶数，转化为：是否能找到子集，使其和等于 sum/2
         int sum = 0;
         for (auto p : nums) sum += p;
         if (sum % 2) return false;
