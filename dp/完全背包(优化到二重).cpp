@@ -18,8 +18,8 @@ int main()
     {
         for (int j = 1; j <= m; j ++)
         {
-            f[i][j] = f[i-1][j];
-            if (j >= v[i]) f[i][j] = max(f[i][j], f[i][j-v[i]] + w[i]);
+            f[i][j] = f[i-1][j]; // 不选当前物品
+            if (j >= v[i]) f[i][j] = max(f[i][j], f[i][j-v[i]] + w[i]); // 优化：直接套用之前[j-v[i]]这个更新过的体积
         }
     }
 

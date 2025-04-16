@@ -10,7 +10,7 @@ public:
         if (lc == n && rc == n) res.push_back(seq);
         else {
             if (lc < n) dfs (n, lc + 1, rc, seq + '(');
-            if (rc < n && lc > rc) dfs(n, lc, rc + 1, seq + ')');
+            if (lc > rc) dfs(n, lc, rc + 1, seq + ')');
         }
     }
 };

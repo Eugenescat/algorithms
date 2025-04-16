@@ -12,21 +12,25 @@
 class Solution {
 public:
     // 思路：写个中序遍历，找到遍历的第k个数
-    int k, ans;
-    int kthSmallest(TreeNode* root, int _k) {
-        k = _k;
-        dfs(root);
-        return ans;
+    int n, res;
+    int kthSmallest(TreeNode* root, int k) {
+        n = k;
+        dfs(root, k);
+        return res;
     }
 
-    bool dfs(TreeNode* root) {
-        if (!root) return false;
-        if (dfs(root->left)) return true;
-        // 判断是否已经遍历到第k个数
-        if ( -- k == 0) {
-            ans = root->val;
-            return true;
+    void dfs(TreeNode* root, int k) {
+        if (!root) return;
+        dfs(root->left, k);
+        if (res) return;
+
+        // 判断当前节点是否是第k个
+        n++;
+        if (n == k) {
+            res = root->val;
+            return;
         }
-        return dfs(root->right);
+
+        dfs(root->right, k);
     }
 };
