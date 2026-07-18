@@ -55,6 +55,7 @@ def next_greatest_letter(letters, target):
         elif ord(letters[mid]) > ord(target):
             r = mid
     
+    # if there's no bigger than target
     if ord(letters[l]) <= ord(target):
         return letters[0]
         
