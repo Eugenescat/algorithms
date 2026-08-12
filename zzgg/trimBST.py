@@ -1,5 +1,6 @@
 def  trimBST(root, L, R):
     
+    # 【一维搜索】找到并返回第一个合法节点
     def findFirstGood(node):
         if not node:
             return None
@@ -10,10 +11,11 @@ def  trimBST(root, L, R):
         else:
             return node
     
-    root = findFirstGood(root)
+    #  root = findFirstGood(root)
     if not root:
         return None
     
+    # 【分支决策修剪】假设传进来的 node 已经合法，它的任务是：检查 node 的两个直接子节点是否合法，如果不合法就"嫁接"
     def helper(node):
         if not node:
             return
@@ -34,5 +36,18 @@ def  trimBST(root, L, R):
                 node.right = findFirstGood(right.left)
             helper(node.right)
     
-    helper(root)
-    return root
+    #【合二为一】最简洁的写法
+    def trim(node):
+        if not node:
+            return None
+        if node.val < L:
+            return trim(node.right)
+        if node.val > R:
+            return trim(node.left)
+        node.left = trim(node.left)
+        node.right = trim(node.right)
+        return node
+    
+    # helper(root)
+    # return root
+    return trim(root)
